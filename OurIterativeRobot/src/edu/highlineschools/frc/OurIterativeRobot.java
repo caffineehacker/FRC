@@ -18,12 +18,16 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  * directory.
  */
 public class OurIterativeRobot extends IterativeRobot {
+    DualJoystickController controller;
+    VictorTankController tank;
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-
+        this.controller = new DualJoystickController();
+        this.tank = new VictorTankController();
     }
 
     /**
@@ -37,7 +41,8 @@ public class OurIterativeRobot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+        this.tank.SetLeftSideSpeed(this.controller.GetLeftJoystickY());
+        this.tank.SetRightSideSpeed(this.controller.GetRightJoystickY());
     }
     
     /**
